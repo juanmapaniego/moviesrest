@@ -1,5 +1,6 @@
 package com.jmpaniego.movies.controllers;
 
+import com.jmpaniego.movies.dto.GenereDto;
 import com.jmpaniego.movies.models.Genere;
 import com.jmpaniego.movies.services.GenereService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class GenereController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Genere>> findAll(){
+  public ResponseEntity<List<GenereDto>> findAll(){
     return ResponseEntity.ok(
       genereService.findAll()
     );

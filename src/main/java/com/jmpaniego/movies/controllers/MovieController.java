@@ -1,5 +1,6 @@
 package com.jmpaniego.movies.controllers;
 
+import com.jmpaniego.movies.dto.MovieDto;
 import com.jmpaniego.movies.models.Movie;
 import com.jmpaniego.movies.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,16 @@ public class MovieController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Movie>> findAll(){
+  public ResponseEntity<List<MovieDto>> findAll(){
     return ResponseEntity.ok(
         movieService.findAll()
+    );
+  }
+
+  @GetMapping("order")
+  public ResponseEntity<List<MovieDto>> findAllOrderByRate(){
+    return ResponseEntity.ok(
+        movieService.findAllOrderByRate()
     );
   }
 }
