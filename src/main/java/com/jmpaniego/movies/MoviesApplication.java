@@ -1,8 +1,8 @@
 package com.jmpaniego.movies;
 
-import com.jmpaniego.movies.models.Genere;
+import com.jmpaniego.movies.models.Gender;
 import com.jmpaniego.movies.models.Movie;
-import com.jmpaniego.movies.repositories.GenereRepository;
+import com.jmpaniego.movies.repositories.GenderRepository;
 import com.jmpaniego.movies.repositories.MovieRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,7 +15,6 @@ import org.springframework.core.io.ClassPathResource;
 
 import java.io.FileReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class MoviesApplication {
@@ -25,7 +24,7 @@ public class MoviesApplication {
 	}
 
 	@Bean
-	public CommandLineRunner init(GenereRepository genereRepository,
+	public CommandLineRunner init(GenderRepository genderRepository,
 																MovieRepository movieRepository){
 		return args -> {
 			/* PARSEO JSON */
@@ -39,8 +38,8 @@ public class MoviesApplication {
 			/* LEER GENEROS Y GUARDARLOS */
 			JSONArray generes = (JSONArray) jsonObject.get("genres");
 			generes.forEach(g -> {
-				Genere genere = new Genere(g.toString());
-				genereRepository.save(genere);
+				Gender gender = new Gender(g.toString());
+				genderRepository.save(gender);
 			});
 
 			/* LEER PELICULAS */
@@ -65,12 +64,12 @@ public class MoviesApplication {
 					rand.nextDouble()*upperBound
 				);
 
-				Set<Genere> genres = new HashSet<>();
+				Set<Gender> genres = new HashSet<>();
 				((JSONArray) movie.get("genres"))
 						.stream()
-						.map(g -> genereRepository.findByName(g.toString()).orElseThrow(() -> new IllegalArgumentException()))
-						.forEach(gM -> genres.add((Genere) gM));
-				movie_db.setGenres(genres);
+						.map(g -> genderRepository.findByName(g.toString()).orElseThrow(() -> new IllegalArgumentException()))
+						.forEach(gM -> genres.add((Gender) gM));
+				movie_db.setGenders(genres);
 
 				movieRepository.save(movie_db);
 			});

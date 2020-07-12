@@ -1,8 +1,5 @@
 package com.jmpaniego.movies.dto;
 
-import com.jmpaniego.movies.models.Genere;
-
-import javax.persistence.Column;
 import java.util.Set;
 
 public class MovieDto {
@@ -15,7 +12,7 @@ public class MovieDto {
   private String actors;
   private String plot;
   private String posterUrl;
-  Set<String> genres;
+  Set<String> genders;
 
   public MovieDto() {}
 
@@ -91,11 +88,11 @@ public class MovieDto {
     this.posterUrl = posterUrl;
   }
 
-  public Set<String> getGenres() {
-    return genres;
+  public Set<String> getGenders() {
+    return genders;
   }
 
-  public void setGenres(Set<String> genres) {
-    this.genres = genres;
+  public void setGenders(Set<String> genders) {
+    this.genders = genders;
   }
 }

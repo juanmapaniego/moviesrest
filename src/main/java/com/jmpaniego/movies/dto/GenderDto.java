@@ -1,9 +1,9 @@
 package com.jmpaniego.movies.dto;
 
-public class GenereDto {
+public class GenderDto {
   private String name;
 
-  public GenereDto() {
+  public GenderDto() {
   }
 
   public String getName() {

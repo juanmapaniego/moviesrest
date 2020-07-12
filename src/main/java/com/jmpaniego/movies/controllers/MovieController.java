@@ -5,11 +5,10 @@ import com.jmpaniego.movies.models.Movie;
 import com.jmpaniego.movies.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/movies")
@@ -22,10 +21,16 @@ public class MovieController {
   }
 
   @GetMapping
-  public ResponseEntity<List<MovieDto>> findAll(){
-    return ResponseEntity.ok(
-        movieService.findAll()
-    );
+  public ResponseEntity<List<MovieDto>> findAll(@RequestParam Optional<List<String>> genders){
+    if(genders.isPresent()) {
+      return ResponseEntity.ok(
+          movieService.findAllByGender(genders.get())
+      );
+    }else{
+      return ResponseEntity.ok(
+          movieService.findAll()
+      );
+    }
   }
 
   @GetMapping("order")
@@ -34,4 +39,20 @@ public class MovieController {
         movieService.findAllOrderByRate()
     );
   }
+
+  @GetMapping("{id}")
+  public ResponseEntity<MovieDto> findById(@PathVariable Long id){
+    return ResponseEntity.ok(
+        movieService.findById(id)
+    );
+  }
+
+  @GetMapping({"/top/{top}","/top"})
+  public ResponseEntity<List<MovieDto>> findTop(@PathVariable("top") Optional<Integer> oTop){
+    Integer top = oTop.orElse(  10);
+    return ResponseEntity.ok(
+        movieService.findTop(top)
+    );
+  }
+
 }

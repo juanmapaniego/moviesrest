@@ -1,8 +1,7 @@
 package com.jmpaniego.movies.controllers;
 
-import com.jmpaniego.movies.dto.GenereDto;
-import com.jmpaniego.movies.models.Genere;
-import com.jmpaniego.movies.services.GenereService;
+import com.jmpaniego.movies.dto.GenderDto;
+import com.jmpaniego.movies.services.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +12,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/generes")
-public class GenereController {
-  private final GenereService genereService;
+public class GenderController {
+  private final GenderService genereService;
 
   @Autowired
-  public GenereController(GenereService genereService) {
+  public GenderController(GenderService genereService) {
     this.genereService = genereService;
   }
 
   @GetMapping
-  public ResponseEntity<List<GenereDto>> findAll(){
+  public ResponseEntity<List<GenderDto>> findAll(){
     return ResponseEntity.ok(
       genereService.findAll()
     );

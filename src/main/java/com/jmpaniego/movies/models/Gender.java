@@ -7,16 +7,16 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class Genere implements Serializable {
+public class Gender implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String name;
 
-  public Genere() {
+  public Gender() {
   }
 
-  public Genere(String g) {
+  public Gender(String g) {
     this.name = g;
   }
 

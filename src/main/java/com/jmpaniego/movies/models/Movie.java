@@ -21,11 +21,11 @@ public class Movie implements Serializable {
 
   @ManyToMany
   @JoinTable(
-      name = "movies_genere",
+      name = "movies_gender",
       joinColumns = @JoinColumn(name = "movie_id"),
-      inverseJoinColumns = @JoinColumn(name = "genere_id")
+      inverseJoinColumns = @JoinColumn(name = "gender_id")
   )
-  Set<Genere> genres;
+  Set<Gender> genders;
 
   public Movie() {
   }
@@ -102,12 +102,12 @@ public class Movie implements Serializable {
     this.posterUrl = posteUrl;
   }
 
-  public Set<Genere> getGenres() {
-    return genres;
+  public Set<Gender> getGenders() {
+    return genders;
   }
 
-  public void setGenres(Set<Genere> genres) {
-    this.genres = genres;
+  public void setGenders(Set<Gender> genders) {
+    this.genders = genders;
   }
 
   private static final long serialVersionUID = 7526472295622776147L;
