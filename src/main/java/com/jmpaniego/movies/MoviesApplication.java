@@ -67,7 +67,7 @@ public class MoviesApplication {
 				Set<Gender> genres = new HashSet<>();
 				((JSONArray) movie.get("genres"))
 						.stream()
-						.map(g -> genderRepository.findByName(g.toString()).orElseThrow(() -> new IllegalArgumentException()))
+						.map(g -> genderRepository.findByName(g.toString()).orElseThrow(() -> new IllegalArgumentException("Problem at init")))
 						.forEach(gM -> genres.add((Gender) gM));
 				movie_db.setGenders(genres);
 

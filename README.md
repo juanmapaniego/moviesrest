@@ -20,7 +20,9 @@ If you want to build this app ant run on your localhost follow next steps.
 
 - GET /api/v1/genders
 - GET /api/v1/movies
+    - Optional you can get movies by a gender or various genders, passing a parameter name 'genders' and make a list of genders to look
 - GET /api/v1/movies/{id}
 - GET /api/v1/movies/order
-- GET /api/v1/movies/top/{top}  //top is the number of what top do you want, cal call without top parameter so it 10 as default.
+- GET /api/v1/movies/top/{top}
+    - top is the number of what top do you want, cal call without top parameter so it 10 as default.
 

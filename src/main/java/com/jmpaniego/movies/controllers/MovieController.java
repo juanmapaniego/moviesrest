@@ -4,6 +4,7 @@ import com.jmpaniego.movies.dto.MovieDto;
 import com.jmpaniego.movies.models.Movie;
 import com.jmpaniego.movies.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,4 +56,26 @@ public class MovieController {
     );
   }
 
+  @PostMapping
+  public ResponseEntity<MovieDto> create(@RequestBody MovieDto movieDto){
+    return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .body( movieService.create(movieDto) );
+  }
+
+  @PutMapping("{id}")
+  public ResponseEntity<MovieDto> update(@PathVariable Long id ,@RequestBody MovieDto movieDto){
+    return ResponseEntity
+        .ok(
+            movieService.update(id, movieDto)
+        );
+  }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<String> delete(@PathVariable Long id){
+    return ResponseEntity
+        .ok(
+            movieService.delete(id)
+        );
+  }
 }
