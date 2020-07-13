@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/generes")
+@RequestMapping("api/v1/genders")
 public class GenderController {
-  private final GenderService genereService;
+  private final GenderService genderService;
 
   @Autowired
-  public GenderController(GenderService genereService) {
-    this.genereService = genereService;
+  public GenderController(GenderService genderService) {
+    this.genderService = genderService;
   }
 
   @GetMapping
   public ResponseEntity<List<GenderDto>> findAll(){
     return ResponseEntity.ok(
-      genereService.findAll()
+      genderService.findAll()
     );
   }
 }
