@@ -2,34 +2,38 @@ package com.jmpaniego.movies.controllers;
 
 import static org.hamcrest.core.Is.is;
 import com.jmpaniego.movies.dto.GenderDto;
+import com.jmpaniego.movies.repositories.GenderRepository;
+import com.jmpaniego.movies.repositories.MovieRepository;
 import com.jmpaniego.movies.services.GenderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.isA;
+
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(MockitoExtension.class)
+@WebMvcTest(GenderController.class)
+//@ActiveProfiles({"test"})
 class GenderControllerTest {
-    @Mock
+
+    @MockBean
     GenderService genderService;
 
-    @InjectMocks
-    GenderController genderController;
+    //@InjectMocks
+    //GenderController genderController;
 
+    @Autowired
     MockMvc mockMvc;
 
     GenderDto validGender;
@@ -39,7 +43,7 @@ class GenderControllerTest {
         validGender = new GenderDto();
         validGender.setName("ACCION");
 
-        mockMvc = MockMvcBuilders.standaloneSetup(genderController).build();
+       // mockMvc = MockMvcBuilders.standaloneSetup(genderController).build();
     }
 
     @Test

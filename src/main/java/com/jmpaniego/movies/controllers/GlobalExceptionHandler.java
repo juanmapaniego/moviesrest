@@ -13,13 +13,13 @@ import javax.servlet.ServletException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
   @ExceptionHandler(IllegalArgumentException.class)
-  public String handlerIllegal(IllegalArgumentException e){
-    return e.getMessage();
+  public ResponseEntity<String> handlerIllegal(IllegalArgumentException e){
+    return ResponseEntity.badRequest().body(e.getMessage());
   }
 
   @ExceptionHandler(EmptyResultDataAccessException.class)
-  public String handlerEmpty(EmptyResultDataAccessException e){
-    return e.getMessage();
+  public ResponseEntity<String> handlerEmpty(EmptyResultDataAccessException e){
+    return ResponseEntity.badRequest().body(e.getMessage());
   }
 
 

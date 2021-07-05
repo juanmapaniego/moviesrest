@@ -89,6 +89,5 @@ public class MovieService {
   public String delete(Long id) {
     movieRepository.deleteById(id);
     return "Succesfuly deleted id "+ id;
-
   }
 }
